@@ -43,8 +43,8 @@ fn main() -> Result<()> {
                 Err(err) => panic!("Error parsing int: {err:?}"),
             };
             offset_int = match direction {
-                "L" => -1 * offset_int,
-                "R" => 1 * offset_int,
+                "L" => -offset_int,
+                "R" => offset_int,
                 _ => panic!("Invalid direction: {direction}"),
             };
             dial_value = (dial_value + offset_int) % 100;
