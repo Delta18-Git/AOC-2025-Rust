@@ -5,7 +5,7 @@ use const_format::concatcp;
 use std::fs::File;
 use std::io::{BufRead, BufReader};
 
-const DAY: &str = "03"; 
+const DAY: &str = "03";
 const INPUT_FILE: &str = concatcp!("input/", DAY, ".txt");
 
 const TEST: &str = "\
@@ -23,6 +23,36 @@ fn main() -> Result<()> {
 
     fn part1<R: BufRead>(reader: R) -> Result<usize> {
         // Initial solution I came up with:
+        //
+        // fn solve(num: u128) -> u128 {
+        //     let mut mask = 10;
+        //     let mut mult = mask;
+        //     let mut val = 0;
+        //     let mut curr = 0;
+        //     for _ in 1..(num.ilog10() + 1) {
+        //         curr = num % 10 + 10 * ((num / mult) % 10);
+        //         if val <= curr {
+        //             val = curr;
+        //             mask *= 10;
+        //             mult = mask;
+        //         } else {
+        //             mult *= 10;
+        //         }
+        //     }
+        //     let rest = num % (mask / 10);
+        //     mult = 10;
+        //     for _ in 1..(rest.ilog10() + 1) {
+        //         curr = val - (val % 10) + ((rest / mult) % 10);
+        //         if val <= curr {
+        //             val = curr;
+        //         }
+        //         mult *= 10;
+        //     }
+        //     val
+        // }
+        //
+        // Version using bytes due to large inputs:
+        //
         // fn solve(num: &[u8]) -> u16 {
         //     let len = num.len();
         //     let mut left_pos = 0;
